@@ -238,6 +238,13 @@
             margin-bottom: 20px;
         }
 
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
         .btn-pdf {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid #334155;
@@ -257,6 +264,46 @@
             background: #ffffff;
             color: #000;
         }
+
+        /* 📱 সোশাল শেয়ার জোন সিএসএস */
+        .share-section {
+            border-top: 1px solid #1e293b;
+            padding-top: 15px;
+        }
+
+        .share-title {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-fb { background-color: #1877f2; }
+        .btn-wa { background-color: #25d366; }
+        .btn-tw { background-color: #1da1f2; }
+        .btn-ln { background-color: #0077b5; }
 
         .safe { border-color: #10b981; color: #10b981; }
         .danger { border-color: #ef4444; color: #ef4444; }
@@ -309,38 +356,3 @@
 
         .glow {
             position: absolute;
-            width: 350px;
-            height: 350px;
-            background: rgba(0, 242, 254, 0.08);
-            filter: blur(120px);
-            border-radius: 50%;
-            top: 15%;
-            z-index: 1;
-        }
-
-        footer {
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.95rem;
-            color: #64748b;
-            z-index: 10;
-            border-top: 1px solid #1e293b;
-            margin-top: 30px;
-        }
-
-        footer span {
-            color: #00f2fe;
-            font-weight: 600;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media print {
-            body { background: #fff; color: #000; }
-            .live-stats, .tabs, .search-box, .drop-zone, .loader-container, .live-feed, .trust-badges, footer, .glow, .btn-pdf { display: none !important; }
-            .container { max-width: 100%; padding: 0; }
-            h1 { background: none; -webkit-text-fill-color: #000; text-align: left; font-size: 2.5rem; }
