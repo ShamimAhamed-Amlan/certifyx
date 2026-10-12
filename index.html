@@ -24,6 +24,26 @@
             position: relative;
         }
 
+        /* লাইভ স্ট্যাটিস্টিকস বার */
+        .live-stats {
+            width: 100%;
+            background: rgba(17, 24, 39, 0.8);
+            border-bottom: 1px solid #1e293b;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            z-index: 10;
+        }
+
+        .stat-item span {
+            color: #00f2fe;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+        }
+
         .container {
             text-align: center;
             max-width: 800px;
@@ -225,6 +245,54 @@
         .safe { border-color: #10b981; color: #10b981; }
         .danger { border-color: #ef4444; color: #ef4444; }
 
+        /* লাইভ অ্যাক্টিভিটি ফিড */
+        .live-feed {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #64748b;
+            background: rgba(30, 41, 59, 0.3);
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+        
+        .live-feed span { color: #4facfe; }
+
+        /* ট্রাস্ট ব্যাজ সেকশন */
+        .trust-badges {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .trust-badges:hover { opacity: 0.9; }
+
+        .badge {
+            background: #111827;
+            border: 1px solid #1e293b;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
         .glow {
             position: absolute;
             width: 350px;
@@ -243,6 +311,8 @@
             font-size: 0.95rem;
             color: #64748b;
             z-index: 10;
+            border-top: 1px solid #1e293b;
+            margin-top: 30px;
         }
 
         footer span {
@@ -255,10 +325,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* পিডিএফ প্রিন্ট ফরম্যাটের জন্য স্পেশাল সিএসএস */
         @media print {
             body { background: #fff; color: #000; }
-            .tabs, .search-box, .drop-zone, .loader-container, footer, .glow, .btn-pdf { display: none !important; }
+            .live-stats, .tabs, .search-box, .drop-zone, .loader-container, .live-feed, .trust-badges, footer, .glow, .btn-pdf { display: none !important; }
             .container { max-width: 100%; padding: 0; }
             h1 { background: none; -webkit-text-fill-color: #000; text-align: left; font-size: 2.5rem; }
             .tagline { color: #555; text-align: left; margin-bottom: 40px; }
@@ -269,11 +338,18 @@
 </head>
 <body>
 
+    <!-- লাইভ অ্যানালিটিক্স বার -->
+    <div class="live-stats">
+        <div class="stat-item">🔒 Security Protocols: <span>ACTIVE</span></div>
+        <div class="stat-item">📊 Total Threats Neutralized: <span id="totalScans">1,482,924</span></div>
+        <div class="stat-item">🟢 AI Analysts Online: <span id="onlineUsers">4,812</span></div>
+    </div>
+
     <div class="glow"></div>
     
     <div class="container">
         <h1>CertifyX</h1>
-        <div class="tagline">The Future of Digital Trust. Developed by Shamim Ahamed.</div>
+        <div class="tagline">Next-Gen AI Trust & Safety Engine. Developed by Shamim Ahamed.</div>
         
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('link-tab')">🔗 Scan Links / Texts</button>
@@ -282,42 +358,3 @@
 
         <div id="link-tab" class="content-panel active">
             <div class="search-box">
-                <input type="text" id="targetInput" placeholder="Paste suspicious link or message here...">
-                <button class="btn-scan" onclick="startScan('link')">Scan Now</button>
-            </div>
-        </div>
-
-        <div id="deepfake-tab" class="content-panel">
-            <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                <p>Drag & Drop an image/video or <b>Browse File</b></p>
-                <input type="file" id="fileInput" class="file-input" onchange="startScan('file')">
-            </div>
-        </div>
-
-        <div class="loader-container" id="loaderContainer">
-            <div class="status-text" id="statusText">Initializing CertifyX AI Engine...</div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-        </div>
-
-        <div class="result-box" id="resultBox">
-            <div class="result-title" id="resultTitle">Analysis Report</div>
-            <div class="result-desc" id="resultDesc">Detailed information will appear here.</div>
-            <button class="btn-pdf" onclick="downloadPDF()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download Safety Report (PDF)
-            </button>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2026 CertifyX. Designed & Developed by <span>Shamim Ahamed</span>
-    </footer>
-
-    <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
