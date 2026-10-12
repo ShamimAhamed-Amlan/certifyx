@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CertifyX - Next-Gen AI Trust & Safety Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: #8fa0dd;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 18px 25px;
+            border-radius: 50px;
+            border: 2px solid #1e293b;
+            background-color: #111827;
+            color: #fff;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="text"]:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn-scan {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            padding: 12px 30px;
+            border-radius: 40px;
+            border: none;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            color: #000;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-scan:hover {
+            transform: scale(1.05);
+        }
+
+        /* ফিউচারিস্টিক ব্যাকগ্রাউন্ড গ্লো */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 242, 254, 0.1);
+            filter: blur(100px);
+            border-radius: 50%;
+            top: 20%;
+            left: 30%;
+            z-index: 1;
+        }
+
+        /* Shamim Ahamed - ফুটার পার্ট */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #64748b;
+            z-index: 10;
+            letter-spacing: 1px;
+        }
+
+        footer span {
+            color: #00f2fe;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow"></div>
+    
+    <div class="container">
+        <h1>CertifyX</h1>
+        <p>The Future of Digital Trust. Verify deepfakes, links, and identities instantly.</p>
+        
+        <div class="search-box">
+            <input type="text" id="targetInput" placeholder="Paste link, text, or profile URL to verify...">
+            <button class="btn-scan" onclick="startScan()">Scan Now</button>
+        </div>
+    </div>
+
+    <!-- আপনার নাম যুক্ত করা হলো নিচে -->
+    <footer>
+        &copy; 2026 CertifyX. Developed by <span>Shamim Ahamed</span>
+    </footer>
+
+    <script>
+        function startScan() {
+            let input = document.getElementById('targetInput').value;
+            if(input === "") {
+                alert("Please paste something to scan!");
+                return;
+            }
+            alert("CertifyX AI is analyzing: " + input + "\n(প্রোটোটাইপ সাকসেসফুল!)");
+        }
+    </script>
+</body>
+</html>
