@@ -27,7 +27,7 @@
         .container {
             text-align: center;
             max-width: 800px;
-            padding: 20px;
+            padding: 40px 20px;
             z-index: 10;
             flex: 1;
             display: flex;
@@ -47,17 +47,52 @@
             -webkit-text-fill-color: transparent;
         }
 
-        p {
+        .tagline {
             color: #8fa0dd;
             font-size: 1.2rem;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
+        /* ট্যাব সিস্টেম */
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            background: #111827;
+            border: 1px solid #1e293b;
+            color: #94a3b8;
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            color: #000;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .content-panel {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        /* সার্চ বক্স (ট্যাব ১) */
         .search-box {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
         }
 
         input[type="text"] {
@@ -70,7 +105,6 @@
             font-size: 1.1rem;
             outline: none;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         input[type="text"]:focus {
@@ -90,17 +124,37 @@
             font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.2s ease;
         }
 
-        .btn-scan:hover {
-            transform: scale(1.05);
+        /* ড্রপ জোন (ট্যাব ২) */
+        .drop-zone {
+            width: 100%;
+            border: 2px dashed #1e293b;
+            padding: 40px 20px;
+            border-radius: 20px;
+            background: #111827;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* ফিউচারিস্টিক লোডার অ্যানিমেশন */
+        .drop-zone:hover {
+            border-color: #00f2fe;
+            background: rgba(0, 242, 254, 0.02);
+        }
+
+        .drop-zone p {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* এআই লোডার */
         .loader-container {
             display: none;
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
             max-width: 500px;
         }
@@ -110,7 +164,6 @@
             font-size: 1.1rem;
             margin-bottom: 10px;
             font-weight: 500;
-            letter-spacing: 1px;
         }
 
         .progress-bar {
@@ -119,14 +172,12 @@
             background-color: #1e293b;
             border-radius: 10px;
             overflow: hidden;
-            position: relative;
         }
 
         .progress-fill {
             width: 0%;
             height: 100%;
             background: linear-gradient(90deg, #00f2fe, #4facfe);
-            border-radius: 10px;
             transition: width 0.4s ease;
         }
 
@@ -140,13 +191,7 @@
             border: 1px solid #1e293b;
             width: 100%;
             max-width: 500px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            text-align: left;
         }
 
         .result-title {
@@ -166,13 +211,12 @@
 
         .glow {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: rgba(0, 242, 254, 0.1);
-            filter: blur(100px);
+            width: 350px;
+            height: 350px;
+            background: rgba(0, 242, 254, 0.08);
+            filter: blur(120px);
             border-radius: 50%;
-            top: 20%;
-            left: 30%;
+            top: 15%;
             z-index: 1;
         }
 
@@ -183,13 +227,16 @@
             font-size: 0.95rem;
             color: #64748b;
             z-index: 10;
-            letter-spacing: 1px;
         }
 
         footer span {
             color: #00f2fe;
             font-weight: 600;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -199,11 +246,29 @@
     
     <div class="container">
         <h1>CertifyX</h1>
-        <p>The Future of Digital Trust. Verify deepfakes, links, and identities instantly.</p>
+        <div class="tagline">The Future of Digital Trust. Developed by Shamim Ahamed.</div>
         
-        <div class="search-box">
-            <input type="text" id="targetInput" placeholder="Paste link, text, or profile URL to verify...">
-            <button class="btn-scan" onclick="startScan()">Scan Now</button>
+        <!-- ট্যাব সিলেক্টর -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('link-tab')">🔗 Scan Links / Texts</button>
+            <button class="tab-btn" onclick="switchTab('deepfake-tab')">🖼️ Deepfake Media Detector</button>
+        </div>
+
+        <!-- ট্যাব ১: লিংক সার্চ -->
+        <div id="link-tab" class="content-panel active">
+            <div class="search-box">
+                <input type="text" id="targetInput" placeholder="Paste suspicious link or message here...">
+                <button class="btn-scan" onclick="startScan('link')">Scan Now</button>
+            </div>
+        </div>
+
+        <!-- ট্যাব ২: ডিপফেক আপলোডার -->
+        <div id="deepfake-tab" class="content-panel">
+            <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <p>Drag & Drop an image/video or <b>Browse File</b></p>
+                <input type="file" id="fileInput" class="file-input" onchange="startScan('file')">
+            </div>
         </div>
 
         <!-- এআই লোডার সেকশন -->
@@ -222,21 +287,34 @@
     </div>
 
     <footer>
-        &copy; 2026 CertifyX. Developed by <span>Shamim Ahamed</span>
+        &copy; 2026 CertifyX. Designed & Developed by <span>Shamim Ahamed</span>
     </footer>
 
     <script>
-        function startScan() {
-            let input = document.getElementById('targetInput').value.trim();
-            if(input === "") {
-                alert("Please paste something to scan!");
-                return;
+        // ট্যাব পরিবর্তনের ফাংশন
+        function switchTab(tabId) {
+            document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // রেজাল্ট ক্লিয়ার করা
+            document.getElementById('resultBox').style.display = 'none';
+            document.getElementById('loaderContainer').style.display = 'none';
+        }
+
+        // স্ক্যান অ্যানিমেশন ফাংশন
+        function startScan(type) {
+            if(type === 'link') {
+                let input = document.getElementById('targetInput').value.trim();
+                if(input === "") { alert("Please paste a link or text to scan!"); return; }
+            } else {
+                let file = document.getElementById('fileInput').files[0];
+                if(!file && type==='file') { return; }
             }
 
-            // আগের রেজাল্ট রিসেট করা
             document.getElementById('resultBox').style.display = 'none';
-            
-            // লোডার চালু করা
             let loader = document.getElementById('loaderContainer');
             let progressFill = document.getElementById('progressFill');
             let statusText = document.getElementById('statusText');
@@ -244,50 +322,7 @@
             loader.style.display = 'block';
             progressFill.style.width = '0%';
             
-            // ফেক স্ক্যানিং টাইমলাইন অ্যানিমেশন
             setTimeout(() => {
-                progressFill.style.width = '30%';
-                statusText.innerText = "Analyzing cryptographic signature...";
-            }, 800);
+                progressFill.style.width = '35%';
 
-            setTimeout(() => {
-                progressFill.style.width = '65%';
-                statusText.innerText = "Checking global trust & scam databases...";
-            }, 1800);
-
-            setTimeout(() => {
-                progressFill.style.width = '100%';
-                statusText.innerText = "Finalizing multi-modal AI report...";
-            }, 2800);
-
-            // স্ক্যান সম্পন্ন হলে রেজাল্ট দেখানো
-            setTimeout(() => {
-                loader.style.display = 'none';
-                showResult(input);
-            }, 3600);
-        }
-
-        function showResult(input) {
-            let resultBox = document.getElementById('resultBox');
-            let resultTitle = document.getElementById('resultTitle');
-            let resultDesc = document.getElementById('resultDesc');
-            
-            resultBox.style.display = 'block';
-            
-            // একটি সিম্পল লজিক (ভবিষ্যতে এখানে আসল AI API বসবে)
-            // যদি ইনপুটে "gift", "free", "win", "crypto" বা ভুয়া সাইটের মতো শব্দ থাকে তবে Danger দেখাবে
-            let inputLower = input.toLowerCase();
-            if(inputLower.includes('free') || inputLower.includes('win') || inputLower.includes('gift') || inputLower.includes('http://')) {
-                resultBox.className = "result-box danger";
-                resultTitle.innerText = "⚠️ HIGH RISK DETECTED";
-                resultDesc.innerText = "CertifyX AI security protocols flagged this input. It matches common phishing patterns or unsecured protocols. Avoid clicking or sharing personal data.";
-            } else {
-                resultBox.className = "result-box safe";
-                resultTitle.innerText = "🛡️ SECURE & VERIFIED";
-                resultDesc.innerText = "No malicious patterns or identity mismatches found. This data appears consistent with secure web protocols. CertifyX Trust Index: 98/100.";
-            }
-        }
-    </script>
-</body>
-</html>
 
