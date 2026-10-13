@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CertifyX - Next-Gen AI Trust & Safety Engine by Shamim Ahamed</title>
-    
     <meta name="author" content="Shamim Ahamed">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -140,3 +139,4 @@
     <script>
         // 1. Tab Switching Function
         function switchTab(tabId) {
+            document.querySelectorAll('.content-panel').forEach(function(p) { p.classList.remove('active'); });
