@@ -38,19 +38,19 @@
         .result-box { display: none; margin-top: 30px; padding: 25px; border-radius: 15px; background-color: #111827; border: 1px solid #1e293b; width: 100%; max-width: 500px; text-align: left; }
         .result-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
         .result-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
-        .btn-pdf { background: rgba(255, 255, 255, 0.05); border: 1px solid #334155; color: #fff; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; margin-bottom: 20px; }
+        .btn-pdf { background: rgba(255, 255, 255, 0.05); border: 1px solid #334155; color: #fff; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; margin-bottom: 20px; display: inline-block; }
         .btn-pdf:hover { background: #ffffff; color: #000; }
         .share-section { border-top: 1px solid #1e293b; padding-top: 15px; }
         .share-title { font-size: 0.8rem; color: #64748b; margin-bottom: 10px; letter-spacing: 1px; }
         .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-        .share-btn { padding: 6px 12px; border-radius: 6px; border: none; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; }
+        .share-btn { padding: 6px 12px; border-radius: 6px; border: none; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; }
         .btn-fb { background-color: #1877f2; }
         .btn-wa { background-color: #25d366; }
         .btn-tw { background-color: #1da1f2; }
         .btn-ln { background-color: #0077b5; }
         .safe { border-color: #10b981; color: #10b981; }
         .danger { border-color: #ef4444; color: #ef4444; }
-        .live-feed { margin-top: 40px; font-size: 0.85rem; color: #64748b; background: rgba(30, 41, 59, 0.3); padding: 8px 20px; border-radius: 20px; width: 100%; max-width: 500px; }
+        .live-feed { margin-top: 40px; font-size: 0.85rem; color: #64748b; background: rgba(30, 41, 59, 0.3); padding: 8px 20px; border-radius: 20px; width: 100%; max-width: 500px; text-align: center; }
         .live-feed span { color: #4facfe; }
         .trust-badges { margin-top: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .badge { background: #111827; border: 1px solid #1e293b; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; color: #94a3b8; font-weight: bold; }
@@ -72,41 +72,58 @@
     <div class="container">
         <h1>CertifyX</h1>
         <div class="tagline">Next-Gen AI Trust & Safety Engine. Developed by Shamim Ahamed.</div>
+        
         <div class="tabs">
             <button class="tab-btn active" id="tabLinkBtn" onclick="switchTab('link-tab')">🔗 Scan Links / Texts</button>
             <button class="tab-btn" id="tabMediaBtn" onclick="switchTab('deepfake-tab')">🖼️ Deepfake Media Detector</button>
         </div>
+
+        <!-- Link/Text Panel -->
         <div id="link-tab" class="content-panel active">
             <div class="search-box">
                 <input type="text" id="targetInput" placeholder="Paste suspicious link or message here...">
                 <button class="btn-scan" onclick="startScan('link')">Scan Now</button>
             </div>
         </div>
+
+        <!-- Deepfake Media Panel -->
         <div id="deepfake-tab" class="content-panel">
             <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
                 <p>📂 Drag & Drop an image/video or <b>Browse File</b></p>
                 <input type="file" id="fileInput" class="file-input" onchange="startScan('file')">
             </div>
         </div>
+
+        <!-- Global Loader Container -->
         <div class="loader-container" id="loaderContainer">
             <div class="status-text" id="statusText">Initializing CertifyX AI Engine...</div>
             <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         </div>
+
+        <!-- Global Result Box -->
         <div class="result-box" id="resultBox">
             <div class="result-title" id="resultTitle">Analysis Report</div>
-            <div class="result-desc" id="resultDesc">Detailed verification reports appear here.</div>
-            <button class="btn-pdf" onclick="downloadPDF()">Download PDF Certificate</button>
+            <div class="result-desc" id="resultDesc">Detailed verification report will appear here.</div>
+            
+            <button class="btn-pdf" onclick="downloadPDF()">📥 Print / Save Report</button>
+            
             <div class="share-section">
-                <div class="share-title">📢 Share this Security Report:</div>
+                <div class="share-title">SHARE VERIFICATION RESULT</div>
                 <div class="share-buttons">
-                    <button class="share-btn btn-fb" onclick="shareSocial('fb')">Facebook</button>
-                    <button class="share-btn btn-wa" onclick="shareSocial('wa')">WhatsApp</button>
-                    <button class="share-btn btn-tw" onclick="shareSocial('tw')">X (Twitter)</button>
-                    <button class="share-btn btn-ln" onclick="shareSocial('ln')">LinkedIn</button>
+                    <a href="#" class="share-btn btn-fb" onclick="shareResult('fb')">Facebook</a>
+                    <a href="#" class="share-btn btn-wa" onclick="shareResult('wa')">WhatsApp</a>
+                    <a href="#" class="share-btn btn-tw" onclick="shareResult('tw')">Twitter</a>
+                    <a href="#" class="share-btn btn-ln" onclick="shareResult('ln')">LinkedIn</a>
                 </div>
             </div>
         </div>
-        <div class="live-feed" id="liveFeed">📡 Live Activity: User from United States verified a deepfake media <span>4s ago</span></div>
+
+        <!-- Live Activity Feed -->
+        <div class="live-feed" id="liveFeed">
+            📢 Live Activity: <span id="feedText">User from United States verified a deepfake media 4s ago</span>
+        </div>
+
+        <!-- Trust Badges -->
         <div class="trust-badges">
             <div class="badge">ISO 27001 SECURE</div>
             <div class="badge">GDPR COMPLIANT</div>
@@ -114,89 +131,14 @@
             <div class="badge">AES-256 PROTECTION</div>
         </div>
     </div>
-    <footer>&copy; 2026 CertifyX. Designed & Developed by <span>Shamim Ahamed</span></footer>
+
+    <footer>
+        &copy; 2026 CertifyX. Designed & Developed by <span>Shamim Ahamed</span>
+    </footer>
+
+    <!-- JavaScript Engine Logic -->
     <script>
-        const installBanner = document.getElementById('installBanner');
-        const btnInstall = document.getElementById('btnInstall');
-        btnInstall.addEventListener('click', () => { alert("To install CertifyX on your device:\n1. Click browser menu icon (3 dots)\n2. Tap 'Add to Home Screen'\n\nCreated by Shamim Ahamed."); });
-        setInterval(() => {
-            let scanElem = document.getElementById('totalScans');
-            let currentScans = parseInt(scanElem.innerText.replace(/,/g, ''));
-            scanElem.innerText = (currentScans + Math.floor(Math.random() * 3) + 1).toLocaleString();
-            let onlineElem = document.getElementById('onlineUsers');
-            let currentOnline = parseInt(onlineElem.innerText.replace(/,/g, ''));
-            let fluctuation = Math.random() > 0.5 ? 1 : -1;
-            onlineElem.innerText = (currentOnline + (fluctuation * Math.floor(Math.random() * 4))).toLocaleString();
-        }, 3000);
-        const countries = ['United Kingdom', 'Germany', 'Bangladesh', 'Canada', 'Australia', 'Japan', 'Singapore', 'India', 'France'];
-        const threats = ['verified a suspicious phishing link', 'detected an AI altered deepfake profile picture', 'scanned a high-risk financial text message', 'intercepted a spoofed login domain'];
-        setInterval(() => {
-            let randomCountry = countries[Math.floor(Math.random() * countries.length)];
-            let randomThreat = threats[Math.floor(Math.random() * threats.length)];
-            document.getElementById('liveFeed').innerHTML = `📡 Live Activity: User from <b>${randomCountry}</b> ${randomThreat} <span>just now</span>`;
-        }, 6000);
+        // ১. ট্যাব পরিবর্তনের ফাংশন
         function switchTab(tabId) {
-            document.getElementById('link-tab').style.display = 'none';
-            document.getElementById('deepfake-tab').style.display = 'none';
-            document.getElementById('tabLinkBtn').classList.remove('active');
-            document.getElementById('tabMediaBtn').classList.remove('active');
-            document.getElementById(tabId).style.display = 'block';
-            if(tabId === 'link-tab') { document.getElementById('tabLinkBtn').classList.add('active'); } else { document.getElementById('tabMediaBtn').classList.add('active'); }
-            document.getElementById('resultBox').style.display = 'none';
-            document.getElementById('loaderContainer').style.display = 'none';
-        }
-        function startScan(type) {
-            if(type === 'link') {
-                let input = document.getElementById('targetInput').value.trim();
-                if(input === "") { alert("Please paste a link or text to scan!"); return; }
-            }
-            document.getElementById('resultBox').style.display = 'none';
-            let loader = document.getElementById('loaderContainer');
-            let progressFill = document.getElementById('progressFill');
-            let statusText = document.getElementById('statusText');
-            loader.style.display = 'block';
-            progressFill.style.width = '0%';
-            setTimeout(() => { progressFill.style.width = '35%'; statusText.innerText = "Analyzing systemic cryptographic structure..."; }, 500);
-            setTimeout(() => { progressFill.style.width = '70%'; statusText.innerText = "Cross-matching with global threat databases..."; }, 1200);
-            setTimeout(() => { progressFill.style.width = '100%'; statusText.innerText = "Finalizing security certification..."; }, 2000);
-            setTimeout(() => { loader.style.display = 'none'; showResult(type); }, 2500);
-        }
-        function showResult(type) {
-            let resultBox = document.getElementById('resultBox');
-            let resultTitle = document.getElementById('resultTitle');
-            let resultDesc = document.getElementById('resultDesc');
-            resultBox.style.display = 'block';
-            let systemTime = new Date().toLocaleString();
-            if(type === 'link') {
-                let input = document.getElementById('targetInput').value.toLowerCase();
-                if(input.includes('free') || input.includes('win') || input.includes('gift') || input.includes('http://')) {
-                    resultBox.className = "result-box danger";
-                    resultTitle.innerText = "⚠️ DANGER: MALICIOUS THREAT FOUND";
-                    resultDesc.innerText = `CertifyX AI Security Engine flagged this source. High probability of phishing architecture or credential harvesting. Do not interact.\n\nScan Timestamp: ${systemTime} via CertifyX Core Node.`;
-                } else {
-                    resultBox.className = "result-box safe";
-                    resultTitle.innerText = "🛡️ SECURE: VERIFIED SAFE SOURCE";
-                    resultDesc.innerText = `Threat database match: 0% risk found. SSL encryption protocols are valid. Completely safe to visit.\n\nScan Timestamp: ${systemTime} via CertifyX Core Node.`;
-                }
-            } else {
-                let isFake = Math.random() > 0.5;
-                if(isFake) {
-                    resultBox.className = "result-box danger";
-                    resultTitle.innerText = "⚠️ WARN: AI ALTERED DEEPFAKE MEDIA";
-                    resultDesc.innerText = `Generative adversarial traces & network distortion detected. The file structure is highly synthesized by AI.\n\nScan Timestamp: ${systemTime} via CertifyX Vision Node.`;
-                } else {
-                    resultBox.className = "result-box safe";
-                    resultTitle.innerText = "🛡️ AUTHENTIC ORIGINAL MEDIA";
-                    resultDesc.innerText = `Original image metadata matches secure hardware profile. No generative manipulation found.\n\nScan Timestamp: ${systemTime} via CertifyX Vision Node.`;
-                }
-            }
-        }
-        function downloadPDF() { window.print(); }
-        function shareSocial(platform) {
-            let currentUrl = window.location.href;
-            let text = encodeURIComponent("Scan threats instantly with CertifyX - Next-Gen AI Security Engine developed by Shamim Ahamed!");
-            let shareUrl = "";
-            switch(platform) {
-                case 'fb': shareUrl = `https://facebook.com{encodeURIComponent(currentUrl)}`; break;
-                case 'wa': shareUrl = `https://whatsapp.com{text}%20${encodeURIComponent(currentUrl)}`; break;
-                case 'tw': shareUrl = `https://twitter.com{text}&url=${encodeURIComponent(currentUrl)}`; break;
+            // প্যানেল হাইড এবং অ্যাক্টিভ করা
+
