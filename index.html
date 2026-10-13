@@ -4,23 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🚀 ADVANCED SEO METATAGS BY SHAMIM AHAMED -->
+    <!-- 🚀 SEO METATAGS BY SHAMIM AHAMED -->
     <title>CertifyX - Next-Gen AI Trust & Safety Engine by Shamim Ahamed</title>
-    
     
     <meta name="author" content="Shamim Ahamed">
     
-    <!-- Open Graph / Facebook SEO -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="CertifyX - Next-Gen AI Trust & Safety Engine">
-    <meta property="og:description" content="Stop cyber fraud instantly. Scan suspicious links, texts, and media using state-of-the-art AI architecture. Developed by Shamim Ahamed.">
-    <meta property="og:image" content="https://unsplash.com">
-
-    <!-- Twitter SEO -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="CertifyX - Next-Gen AI Trust & Safety Engine">
-    <meta property="twitter:description" content="Verify digital trust instantly with CertifyX AI. Created by Shamim Ahamed.">
-
     <style>
         * {
             margin: 0;
@@ -35,32 +23,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* 📱 অ্যাপ ইনস্টল ব্যানার সিএসএস */
+        /* 📱 Top Install Banner */
         .install-banner {
-            display: none;
             width: 100%;
             background: linear-gradient(90deg, #1e293b, #0f172a);
             border-bottom: 2px solid #00f2fe;
             padding: 12px 20px;
+            display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            position: fixed;
-            top: 0;
-            left: 0;
-            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.1);
         }
 
         .install-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #e2e8f0;
-            font-weight: 500;
         }
 
         .install-text span {
@@ -72,18 +54,14 @@
             background: linear-gradient(45deg, #00f2fe, #4facfe);
             color: #000;
             border: none;
-            padding: 8px 18px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
-            transition: transform 0.2s;
         }
 
-        .install-btn:hover {
-            transform: scale(1.05);
-        }
-
+        /* Live Analytics Bar */
         .live-stats {
             width: 100%;
             background: rgba(17, 24, 39, 0.8);
@@ -91,34 +69,29 @@
             padding: 10px 20px;
             display: flex;
             justify-content: center;
-            gap: 40px;
-            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.85rem;
             color: #94a3b8;
-            z-index: 10;
-            margin-top: 50px; /* ইনস্টল ব্যানারের জন্য জায়গা */
         }
 
         .stat-item span {
             color: #00f2fe;
             font-weight: bold;
-            text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
         }
 
         .container {
             text-align: center;
             max-width: 800px;
+            width: 100%;
             padding: 40px 20px;
-            z-index: 10;
-            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            width: 100%;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -129,13 +102,14 @@
 
         .tagline {
             color: #8fa0dd;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
         }
 
+        /* Tabs System */
         .tabs {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 30px;
         }
 
@@ -143,31 +117,30 @@
             background: #111827;
             border: 1px solid #1e293b;
             color: #94a3b8;
-            padding: 10px 24px;
+            padding: 10px 20px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
         .tab-btn.active, .tab-btn:hover {
             background: linear-gradient(45deg, #00f2fe, #4facfe);
             color: #000;
             border-color: transparent;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
         }
 
         .content-panel {
             display: none;
             width: 100%;
             max-width: 600px;
-            animation: fadeIn 0.4s ease;
         }
 
         .content-panel.active {
             display: block;
         }
 
+        /* Link Input Box */
         .search-box {
             position: relative;
             width: 100%;
@@ -175,35 +148,33 @@
 
         input[type="text"] {
             width: 100%;
-            padding: 18px 25px;
+            padding: 16px 20px;
             border-radius: 50px;
             border: 2px solid #1e293b;
             background-color: #111827;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1rem;
             outline: none;
-            transition: all 0.3s ease;
         }
 
         input[type="text"]:focus {
             border-color: #00f2fe;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
         }
 
         .btn-scan {
             position: absolute;
-            right: 8px;
-            top: 8px;
-            padding: 12px 30px;
+            right: 6px;
+            top: 6px;
+            padding: 10px 24px;
             border-radius: 40px;
             border: none;
             background: linear-gradient(45deg, #00f2fe, #4facfe);
             color: #000;
             font-weight: bold;
-            font-size: 1rem;
             cursor: pointer;
         }
 
+        /* Drag & Drop Media Box */
         .drop-zone {
             width: 100%;
             border: 2px dashed #1e293b;
@@ -211,12 +182,10 @@
             border-radius: 20px;
             background: #111827;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .drop-zone:hover {
             border-color: #00f2fe;
-            background: rgba(0, 242, 254, 0.02);
         }
 
         .drop-zone p {
@@ -228,6 +197,7 @@
             display: none;
         }
 
+        /* AI Loader Section */
         .loader-container {
             display: none;
             margin-top: 30px;
@@ -237,9 +207,8 @@
 
         .status-text {
             color: #00f2fe;
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 10px;
-            font-weight: 500;
         }
 
         .progress-bar {
@@ -257,6 +226,7 @@
             transition: width 0.4s ease;
         }
 
+        /* Dynamic Result Output Box */
         .result-box {
             display: none;
             margin-top: 30px;
@@ -270,7 +240,7 @@
         }
 
         .result-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 10px;
         }
@@ -282,13 +252,6 @@
             margin-bottom: 20px;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
         .btn-pdf {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid #334155;
@@ -297,11 +260,8 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
         }
 
         .btn-pdf:hover {
@@ -309,16 +269,16 @@
             color: #000;
         }
 
+        /* Social Share Section */
         .share-section {
             border-top: 1px solid #1e293b;
             padding-top: 15px;
         }
 
         .share-title {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #64748b;
             margin-bottom: 10px;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
@@ -333,14 +293,9 @@
             border-radius: 6px;
             border: none;
             color: #fff;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .share-btn:hover {
-            transform: translateY(-2px);
         }
 
         .btn-fb { background-color: #1877f2; }
@@ -353,3 +308,66 @@
 
         .live-feed {
             margin-top: 40px;
+            font-size: 0.85rem;
+            color: #64748b;
+            background: rgba(30, 41, 59, 0.3);
+            padding: 8px 20px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .live-feed span { color: #4facfe; }
+
+        .trust-badges {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #111827;
+            border: 1px solid #1e293b;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
+            margin-top: auto;
+        }
+
+        footer span {
+            color: #00f2fe;
+            font-weight: 600;
+        }
+
+        @media print {
+            body { background: #fff; color: #000; }
+            .install-banner, .live-stats, .tabs, .search-box, .drop-zone, .loader-container, .live-feed, .trust-badges, footer, .btn-pdf, .share-section { display: none !important; }
+            .result-box { display: block !important; border: 2px solid #000; background: #fff; color: #000; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- App Install Banner -->
+    <div class="install-banner" id="installBanner">
+        <div class="install-text">Access instantly from your phone. Install <span>CertifyX App</span></div>
+        <button class="install-btn" id="btnInstall">Install App</button>
+    </div>
+
+    <!-- Live Analytics Dashboard -->
+    <div class="live-stats">
+        <div class="stat-item">🔒 System: <span>ACTIVE</span></div>
+        <div class="stat-item">📊 Threats Neutralized: <span id="totalScans">1,482,924</span></div>
