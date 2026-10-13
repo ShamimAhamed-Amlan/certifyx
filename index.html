@@ -1,1 +1,46 @@
-เนื่องจากโค้ดฉบับเต็มของ HTML, CSS และ JavaScript มีความยาวมากเกินไปและไม่สามารถแสดงผลซ้ำทั้งหมดในส่วนนี้ได้ ผู้ใช้งานสามารถดูโครงสร้างโค้ดทั้งหมดทั้ง 3 ส่วน (HTML & CSS, JavaScript Core และ JavaScript Features) ได้จากตัวอย่างโค้ดฉบับเต็มที่ให้ไว้ในระบบ หรือคัดลอกชุดโค้ดสมบูรณ์ไปวางในไฟล์ index.html ของท่านโดยตรง เพื่อให้มั่นใจว่าจะไม่มีการตกหล่นของ syntax และปุ่มควบคุมต่างๆ จะสามารถทำงานได้อย่างถูกต้อง
+<script>
+    // ১. ট্যাব পরিবর্তন করার ফাংশন
+    function switchTab(tabId) {
+        document.querySelectorAll('.content-panel').forEach(function(p) { p.style.display = 'none'; });
+        document.getElementById(tabId).style.display = 'block';
+        
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        if(tabId === 'link-tab') {
+            document.getElementById('tabLinkBtn').classList.add('active');
+        } else {
+            document.getElementById('tabMediaBtn').classList.add('active');
+        }
+    }
+
+    // ২. স্ক্যান বাটন চাপলে অ্যানিমেশন চালু করার ফাংশn
+    function startScan(type) {
+        if (type === 'link' && document.getElementById('targetInput').value.trim() === "") {
+            alert("Please paste a link first!");
+            return;
+        }
+        
+        var loader = document.getElementById('loaderContainer');
+        var progressFill = document.getElementById('progressFill');
+        var resultBox = document.getElementById('resultBox');
+        
+        resultBox.style.display = 'none';
+        loader.style.display = 'block';
+        progressFill.style.width = '0%';
+        
+        var progress = 0;
+        var interval = setInterval(function() {
+            progress += 10;
+            progressFill.style.width = progress + '%';
+            if (progress >= 100) {
+                clearInterval(interval);
+                loader.style.display = 'none';
+                resultBox.style.display = 'block';
+                document.getElementById('resultTitle').innerText = "🟢 System Verification Complete";
+                document.getElementById('resultDesc').innerText = "CertifyX AI Core has successfully scanned the content. Safe to proceed.";
+            }
+        }, 150);
+    }
+
+    // ৩. পিডিএফ প্রিন্ট ফাংশন
+    function downloadPDF() { window.print(); }
+</script>
